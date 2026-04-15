@@ -24,14 +24,17 @@ FACDNet achieves state-of-the-art performance by integrating the following compo
 This project was developed and tested on **Ubuntu 22.04** with **CUDA 12.1** and **PyTorch 2.5.1**.
 
 ### Quick Installation
+
 ```bash
-git clone [https://github.com/your-username/FACDNet.git](https://github.com/your-username/FACDNet.git)
+git clone https://github.com/your-username/FACDNet.git
 cd FACDNet
 pip install -r requirements.txt
-Full Dependencies (requirements.txt)
+```
+
+### Full Dependencies (`requirements.txt`)
 The following environment configuration was used for our experiments:
 
-Plaintext
+```text
 albucore==0.0.24
 albumentations==2.0.8
 annotated-types==0.7.0
@@ -107,10 +110,15 @@ typer-slim==0.20.0
 typing-inspection==0.4.2
 typing_extensions==4.15.0
 zipp==3.23.0
-📂 Dataset Preparation
+```
+
+---
+
+## 📂 Dataset Preparation
+
 We support standard datasets such as LEVIR-CD and SHCD. Please organize your data as follows:
 
-Plaintext
+```text
 Data_root/
 ├── train/
 │   ├── A/          # Images at Time 1 (T1)
@@ -120,41 +128,52 @@ Data_root/
 │   ├── A/, B/, label/
 └── test/
     ├── A/, B/, label/
-Note: The dataloader resizes images to 256x256 and binarizes masks with a threshold of 127.
+```
+*Note: The dataloader resizes images to 256x256 and binarizes masks with a threshold of 127.*
 
-🚀 Usage Guide
-1. Training
-Update your local data and saving paths in the config dictionary at the bottom of train.py, then run:
+---
 
-Bash
+## 🚀 Usage Guide
+
+### 1. Training
+Update your local data and saving paths in the `config` dictionary at the bottom of `train.py`, then run:
+
+```bash
 python train.py
-The script automatically saves the best_model.pth (based on validation F1-score) and latest_model.pth, while generating training curves (training_curves.png).
+```
+The script automatically saves the `best_model.pth` (based on validation F1-score) and `latest_model.pth`, while generating training curves (`training_curves.png`).
 
-2. Testing & Evaluation
-Update the checkpoint and data paths in test.py, then run:
+### 2. Testing & Evaluation
+Update the checkpoint and data paths in `test.py`, then run:
 
-Bash
+```bash
 python test.py
+```
 This script outputs a detailed metrics table (Precision, Recall, F1, IoU, Acc) and saves binary prediction maps to the specified directory.
 
-⚠️ Important Precautions
-Path Configuration: The code contains hard-coded absolute paths (e.g., /hy-tmp/...) specific to our server environment. You MUST update these paths in train.py and test.py before running the scripts.
+---
 
-Reproducibility: We use set_seed(42) to ensure deterministic behavior. However, minor variations in metrics may still occur across different GPU architectures (e.g., RTX 4090 vs. A100).
+## ⚠️ Important Precautions
 
-VRAM Requirements: The default batch_size=16 requires at least 12GB of VRAM. If you encounter "Out of Memory" errors, please decrease the batch_size in the config.
+* **Path Configuration:** The code contains hard-coded absolute paths (e.g., `/hy-tmp/...`) specific to our server environment. **You MUST update these paths in `train.py` and `test.py`** before running the scripts.
+* **Reproducibility:** We use `set_seed(42)` to ensure deterministic behavior. However, minor variations in metrics may still occur across different GPU architectures (e.g., RTX 4090 vs. A100).
+* **VRAM Requirements:** The default `batch_size=16` requires at least 12GB of VRAM. If you encounter "Out of Memory" errors, please decrease the `batch_size` in the `config`.
+* **Data Security:** Do not upload original datasets to this repository. Refer to the official sources for data access.
 
-Data Security: Do not upload original datasets to this repository. Refer to the official sources for data access.
+---
 
-📝 Citation
+## 📝 Citation
+
 If you use this code in your research, please cite our paper:
 
-代码段
+```bibtex
 @article{facdnet2026,
   title={[Your Paper Title Here]},
   author={[Your Name] and [Co-authors]},
   journal={[Journal Name]},
   year={2026}
 }
-📧 Contact
-For any questions or issues, please open a GitHub Issue or contact the corresponding author at: [Your Email Address].
+```
+
+## 📧 Contact
+For any questions or issues, please open a GitHub Issue or contact the corresponding author at: `324085406137@stu.suse.edu.cn`.
